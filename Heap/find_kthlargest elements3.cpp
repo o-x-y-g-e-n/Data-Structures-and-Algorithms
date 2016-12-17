@@ -52,50 +52,23 @@ void built_minheap(vector<int>&a)
 		min_heapify(a,i);
 	}
 }
-//delete max element 
-void delete_min(vector<int>&a)
-{
-	if(a.size() < 1)
-	{
-		cout << "heap underflow";
-		return;
-	}
-	int temp = a[a.size() -1];
-	a.erase(remove(a.begin(), a.end(), temp), a.end());
-	a[0] = temp;
-	min_heapify(a,0);
-}
-// increase an key by given val
-void increase_key(vector<int>&a,int i , int key)
-{
-	if(key < a[i])
-		return;
-	a[i] = key;
-	while(i>=0 && a[i/2] > a[i])
-	{	
-		swap(a[i],a[i/2]);
-		i = i/2;
-	}
-}
-// decrease an key by given val
-void decrease_key(vector<int>&a,int i , int key)
-{
-	if(key > a[i])
-		return;
-	a[i] = key;
-	min_heapify(a,i);
-}
-void insert_element(vector<int>&a,int val)
-{
-	
-	a.push_back(-999);
-	increase_key(a,7,val);
-}
-
 int main()
 {
-	vector<int>a={2,5,64,32,12,34,31};
-	built_minheap(a);
-	print(a);
+	vector<int>a={211,21,20,26,50,5};
+	vector<int>b;
+	for(int i=0 ;i<3 ;i++)
+	{
+		b.push_back(a[i]);
+	}
+	built_minheap(b);
+	for(int i=b.size() ; i<a.size() ; i++)
+	{
+		if(b[0] < a[i])
+		{	
+			swap(&b[0],&a[i]);
+			min_heapify(b,0);
+		}
+	}
+	print(b);
 	return 0;
 }

@@ -28,13 +28,13 @@ void max_heapify(vector<int>&a,int i)
 	int l = 2*i+1;
 	int r = 2*i+2;
 	int largest=i;
-	if(l<=a.size() && a[l] > a[i])
+	if(l<a.size() && a[l] > a[i])
 	{
 		largest = l;
 	}
 	else
 		largest = i;
-	if(r <= a.size() && a[r] > a[largest])
+	if(r < a.size() && a[r] > a[largest])
 	{
 		largest = r;
 	}
