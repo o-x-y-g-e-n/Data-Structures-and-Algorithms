@@ -27,7 +27,7 @@ void print_lis(vector<int>a , int max,vector<int>b)
 	reverse(fin.begin(),fin.end());
 	print(fin);
 }
-int LCS(vector<int>a)
+int LIS(vector<int>a)
 {
 	vector<int>lcs(a.size(),1);
 	for(int i=1 ;i<a.size() ; i++)
@@ -48,6 +48,6 @@ int LCS(vector<int>a)
 int main()
 {
 	vector<int>a = {10, 22, 9, 33, 21, 50, 41, 60};
-	cout << LCS(a) << endl;
+	cout << LIS(a) << endl;
 	return 0;
 }
