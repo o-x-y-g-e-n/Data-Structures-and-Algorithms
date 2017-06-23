@@ -29,6 +29,15 @@ bstnode *min(bstnode *root)
 	else
 		return min(root->left);
 }
+int countLeaves(bstnode *root)
+{
+	if(root == NULL)
+		return 0;
+	if(root->left == NULL && root->right == NULL)
+		return 1;
+	else
+		return (countLeaves(root->left) + countLeaves(root->right));
+}
 bstnode *insert(bstnode *root ,int data)
 {
 	if(root == NULL)
@@ -159,6 +168,33 @@ bstnode* Delete(bstnode* root,int data)
 	}
 	return root;
 }
+int countfullnodes(bstnode *root)
+{
+	if(!root)
+		return 0;
+	if(!root->left && !root->right)
+		return 0;
+	return countfullnodes(root->left) + countfullnodes(root->right) + ((root->left && root->right)?1:0);
+}
+int identicalTrees(bstnode* a, bstnode* b)
+{
+    if (a==NULL && b==NULL)
+        return 1;
+ 
+    /* 2. both non-empty -> compare them */
+    if (a!=NULL && b!=NULL)
+    {
+        return
+        (
+            a->data == b->data &&
+            identicalTrees(a->left, b->left) &&
+            identicalTrees(a->right, b->right)
+        );
+    }
+     
+    /* 3. one empty, one not -> false */
+    return 0;
+} 
 int main()
 {
 	bstnode *root = NULL;
@@ -169,7 +205,5 @@ int main()
 	root = insert(root,12);
 	root = insert(root,17);
 	root = insert(root,25);
-	root = Delete(root,17);
-	inorder(root);
 	return 0;
 }
